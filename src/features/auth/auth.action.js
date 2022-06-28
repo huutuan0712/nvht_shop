@@ -16,7 +16,7 @@ export const loginAction = createAsyncThunk(
         return response
         // Save access token to storage
        } catch (error) {
-        rejectWithValue(error)
+          return   rejectWithValue(error)
        }
       }
     
@@ -30,7 +30,9 @@ export const loginAction = createAsyncThunk(
       
          return response
       } catch (error) {
-        rejectWithValue(error)
+        console.log("🚀 ~ file: auth.action.js ~ line 33 ~ error", error)
+       return  rejectWithValue(error)
+
       }
     }
   );

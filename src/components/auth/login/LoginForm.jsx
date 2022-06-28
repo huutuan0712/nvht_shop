@@ -37,11 +37,15 @@ if(isLogin){
       }}
       validationSchema={validate}
       onSubmit={values => {
+        // console.log("🚀 ~ file: LoginForm.jsx ~ line 41 ~ LoginForm ~ dispatch(loginAction(values))", dispatch(loginAction(values)))
         dispatch(loginAction(values))
+        
         .then(unwrapResult)
         .then(res => loginSuccess(res))
-        .catch(error =>{console.log(error);})
+        .catch(error =>{console.log(error.message );})
+
       }}
+      
     >
       {formik => (
         <div className="w-full max-w-2xl p-3 flex justify-center items-center h-screen m-auto">

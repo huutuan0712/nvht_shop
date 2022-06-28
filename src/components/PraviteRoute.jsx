@@ -1,16 +1,12 @@
-import {useDispatch,useSelector} from 'react-redux'
-import {useNavigate,Navigate, Outlet} from 'react-router-dom'
+import {useSelector} from 'react-redux'
+import {Navigate, Outlet} from 'react-router-dom'
 export default function PraviteRoute() {
 
     const { isLogin, user } = useSelector(
      (state) => state?.auth
     );
-   
-    return isLogin ? (
-    
-      <Outlet />
-     
-    ) : (
-     <Navigate to="/login" />
-    );
+      if(isLogin){
+        return user.role == '1' ? ( <Navigate to="/admin" /> ) : ( <Outlet/>);
+      }else
+      return <Navigate to="/login" /> 
    }

@@ -1,7 +1,7 @@
 const API_ENPOINT = {
-    auth:{
+    AUTH:{
         LOGIN:'/auth/login',
-        PROFILE:'/user-proflie'
+        REGISTER:'/auth/register'
     }
 }
 export default API_ENPOINT

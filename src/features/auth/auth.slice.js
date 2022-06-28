@@ -6,30 +6,32 @@ const authSlice = createSlice({
     name:'auth',
     initialState:{
         isLogin:false,
-        user:null
+        user:[] | null
     },
     reducers:{
-        // setAuth:(state,action)=>{
-        //     state.user = action.payload.user
-        //     state.isLogin = true
+        setUser:(state,action)=>{
+            state.user = action.payload.user
+        },
+        setAuth:(state,action)=>{
+            state.user = action.payload.user
+            state.isLogin = true
           
-        // }
+        },
         setLogOut:(state,action)=>{
             state.user = null
             state.isLogin = false
-            
         }
     },
     extraReducers:{
-        [loginAction.fulfilled]:(state,action)=>{
-            state.user = action.payload.user
-            state.isLogin = true
-            console.log('login success');
-        },
-        [loginAction.rejected]:(state,action)=>{
+        // [loginAction.fulfilled]:(state,action)=>{
+        //     state.user = action.payload.user
+        //     state.isLogin = true
+        //     console.log('login success');
+        // },
+        // [loginAction.rejected]:(state,action)=>{
         
-            console.log('login error');
-        }
+        //     console.log('login error');
+        // }
     }
 })
 export const { setAuth, setLogOut, setUser } = authSlice.actions;

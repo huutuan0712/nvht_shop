@@ -2,19 +2,10 @@ import React from "react";
 import { Formik, Form } from 'formik';
 import { TextField } from '../../textfield/TextField';
 import * as Yup from 'yup';
-import {useDispatch,useSelector} from 'react-redux'
- import { loginAction } from "../../../features/auth/auth.action";
-import { unwrapResult } from "@reduxjs/toolkit";
-import { setAuth } from "../../../features/auth/auth.slice";
-import {useNavigate,Navigate, Link} from 'react-router-dom'
+import useLogin from './useLogin'
+import { Link } from "react-router-dom";
 function LoginForm() {
-    const dispatch = useDispatch();
-    const {isLogin} = useSelector(state => state.auth)
-    // const navigate = useNavigate()
-    const loginSuccess = (res)=>{
-      dispatch(setAuth(res))
-      alert('login success')
-    }
+  const {fetchLogin} = useLogin();
     
     const validate = Yup.object({
       email: Yup.string()
@@ -25,10 +16,6 @@ function LoginForm() {
         .required('Password is required'),
     })
  
-if(isLogin){
-
-    return <Navigate to='/' />
-}
   return (
     <Formik
       initialValues={{
@@ -38,12 +25,7 @@ if(isLogin){
       validationSchema={validate}
       onSubmit={values => {
         // console.log("🚀 ~ file: LoginForm.jsx ~ line 41 ~ LoginForm ~ dispatch(loginAction(values))", dispatch(loginAction(values)))
-        dispatch(loginAction(values))
-        
-        .then(unwrapResult)
-        .then(res => loginSuccess(res))
-        .catch(error =>{console.log(error.message );})
-
+        fetchLogin(values)
       }}
       
     >

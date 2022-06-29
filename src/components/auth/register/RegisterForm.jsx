@@ -4,6 +4,7 @@ import { TextField } from '../../textfield/TextField';
 import * as Yup from 'yup';
 import useRegister from './useRegister';
 import { Link, Navigate } from 'react-router-dom';
+import { Result } from 'antd';
 
 
 export default function RegisterForm() {
@@ -24,6 +25,11 @@ export default function RegisterForm() {
       .required('Confirm password is required'),
   })
   if(isSuccess){
+    <Result
+     status={"success"}
+     title="Thành công"
+     subTitle="Đăng ký thành công. Hãy check mail để xác nhận tài khoản"
+    />
     return <Navigate to='/login' />
   }
   return (

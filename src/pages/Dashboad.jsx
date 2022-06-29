@@ -1,8 +1,8 @@
+
 import React from 'react'
-import {useDispatch} from 'react-redux'
+import {useDispatch,useSelector} from 'react-redux'
 import { setLogOut } from '../features/auth/auth.slice';
-
-
+import {useNavigate,Navigate} from 'react-router-dom'
 function Dashboad() {
   const dispatch = useDispatch();
   // const {isLogin} = useSelector(state => state.auth)

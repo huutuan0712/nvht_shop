@@ -1,0 +1,25 @@
+.login {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &__content {
+     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+     border-radius: 2rem;
+     width: 30%;
+     padding: 2rem;
+     .header {
+      text-align: center;
+      text-transform: uppercase;
+     }
+     .flex{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+     }
+     .form {
+     }
+     .footer {
+     }
+    }
+   }

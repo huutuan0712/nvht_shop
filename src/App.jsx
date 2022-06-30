@@ -1,11 +1,14 @@
 import { BrowserRouter ,Routes,Route} from 'react-router-dom'
-import './App.css'
-import RegisterForm from './components/auth/register/RegisterForm'
-import LoginForm from './components/auth/login/LoginForm'
-import PraviteRoute from './components/PraviteRoute'
-import Home from './pages/Home'
-import Dashboad from './pages/Dashboad'
+
+
+import PraviteRoute from './components/PraviteRoute/AdminRoute'
+import Home from './pages/client/Home/Home'
+import Dashboad from './pages/admin/Dashboad'
 import NotFound from './error/NotFound'
+import LoginForm from './pages/auth/login/LoginForm'
+import RegisterForm from './pages/auth/register/RegisterForm'
+import ClientRoute from './components/PraviteRoute/ClientRoute'
+import AdminRoute from './components/PraviteRoute/AdminRoute'
 function App() {
   
 
@@ -14,11 +17,13 @@ function App() {
         <BrowserRouter>
             <Routes>
                        {/* CLIENT */}
-          <Route index element={<Home />} />
+          <Route path='/' element={<ClientRoute/>}>
+              <Route index element={<Home />} />
+          </Route>
           {/* <Route path={'product-detail/:id'} element={<ProductDetail />} /> */}
 
           {/* ADMIN */}
-          <Route path='/admin' element={<PraviteRoute />}>
+          <Route path='/admin' element={<AdminRoute />}>
             <Route index element={<Dashboad />} />
             {/* <Route path={'user'} element={<UserManagement />} />
             <Route path={'product'} element={<ProductManagement />} /> */}
@@ -29,7 +34,6 @@ function App() {
           <Route path='*' element={<NotFound />} />
             </Routes>
 
-       
       
         </BrowserRouter>
         

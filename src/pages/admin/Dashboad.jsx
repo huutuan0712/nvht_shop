@@ -1,7 +1,7 @@
 
 import React from 'react'
 import {useDispatch,useSelector} from 'react-redux'
-import { setLogOut } from '../features/auth/auth.slice';
+import { setLogOut } from '../../features/auth/auth.slice';
 import {useNavigate,Navigate} from 'react-router-dom'
 function Dashboad() {
   const dispatch = useDispatch();

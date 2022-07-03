@@ -1,13 +1,13 @@
 import { BrowserRouter ,Routes,Route} from 'react-router-dom'
 import RegisterForm from './pages/auth/register/RegisterForm'
 import LoginForm from './pages/auth/login/LoginForm'
-import PraviteRoute from './components/PraviteRoute/PraviteRoute'
 import Home from './pages/client/home/Home'
 import Dashboad from './pages/admin/Dashboad'
 import NotFound from './error/NotFound'
 import ClientRoute from './components/PraviteRoute/ClientRoute'
 import ProductWrapper from './pages/admin/product/ProductWrapper'
 import Category from './pages/admin/product/category/Category'
+import AdminRoute from './components/PraviteRoute/AdminRoute'
 function App() {
   
 

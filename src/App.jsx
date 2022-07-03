@@ -16,13 +16,14 @@ function App() {
         <BrowserRouter>
             <Routes>
                        {/* CLIENT */}
-          <Route path="/" element={<ClientRoute/>}>
-             <Route index element={<Home />} />
+         
+          <Route path='/' element={<ClientRoute/>}>
+              <Route index element={<Home />} />
           </Route>
           {/* <Route path={'product-detail/:id'} element={<ProductDetail />} /> */}
 
           {/* ADMIN */}
-          <Route path="admin" element={<PraviteRoute />}>
+          <Route path='/admin' element={<AdminRoute />}>
             <Route index element={<Dashboad />} />
             {/* {/* <Route path={'user'} element={<UserManagement />} /> */}
             <Route path="product" element={<Category />} /> 
@@ -32,7 +33,6 @@ function App() {
           <Route path="*" element={<NotFound />} />
             </Routes>
 
-       
       
         </BrowserRouter>
         

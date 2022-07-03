@@ -1,5 +1,5 @@
 import { createSlice} from "@reduxjs/toolkit";
-import { loginAction } from "./auth.action";
+// import { loginAction } from "./auth.action";
 
 
 const authSlice = createSlice({
@@ -17,25 +17,15 @@ const authSlice = createSlice({
             state.isLogin = true
           
         },
-        setLogOut:(state,action)=>{
+        setLogOut:(state)=>{
             state.user = null
             state.isLogin = false
             localStorage.removeItem('access_token');
             localStorage.removeItem('expired_at');
             localStorage.removeItem('token_type');
         }
-    },
-    extraReducers:{
-        // [loginAction.fulfilled]:(state,action)=>{
-        //     state.user = action.payload.user
-        //     state.isLogin = true
-        //     console.log('login success');
-        // },
-        // [loginAction.rejected]:(state,action)=>{
-        
-        //     console.log('login error');
-        // }
     }
+    
 })
 export const { setAuth, setLogOut, setUser } = authSlice.actions;
 export default authSlice.reducer;

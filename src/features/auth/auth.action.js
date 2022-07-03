@@ -30,9 +30,18 @@ export const loginAction = createAsyncThunk(
       
          return response
       } catch (error) {
-        console.log("🚀 ~ file: auth.action.js ~ line 33 ~ error", error)
        return  rejectWithValue(error)
-
+      }
+    }
+  );
+  export const logOutAction = createAsyncThunk(
+    '/logout',
+    async (params,{rejectWithValue}) =>{
+      try {
+        const response = await authApi.logout(params);
+         return response
+      } catch (error) {
+       return  rejectWithValue(error)
       }
     }
   );

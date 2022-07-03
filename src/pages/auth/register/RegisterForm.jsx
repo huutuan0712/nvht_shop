@@ -43,7 +43,7 @@ export default function Register() {
     </Form.Item>
     <Form.Item
      hasFeedback
-     name="fullName"
+     name="name"
      label="Họ và tên"
      rules={[
       {
@@ -68,7 +68,7 @@ export default function Register() {
     <Form.Item
      label="Nhập lại mật khẩu"
      dependencies={["password"]}
-     name="confirm"
+     name="password_confirmation"
      hasFeedback
      rules={[
       {

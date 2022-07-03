@@ -1,11 +1,13 @@
 import { BrowserRouter ,Routes,Route} from 'react-router-dom'
-import './App.css'
-import RegisterForm from './components/auth/register/RegisterForm'
-import LoginForm from './components/auth/login/LoginForm'
-import PraviteRoute from './components/PraviteRoute'
-import Home from './pages/Home'
-import Dashboad from './pages/Dashboad'
+import RegisterForm from './pages/auth/register/RegisterForm'
+import LoginForm from './pages/auth/login/LoginForm'
+import PraviteRoute from './components/PraviteRoute/PraviteRoute'
+import Home from './pages/client/home/Home'
+import Dashboad from './pages/admin/Dashboad'
 import NotFound from './error/NotFound'
+import ClientRoute from './components/PraviteRoute/ClientRoute'
+import ProductWrapper from './pages/admin/product/ProductWrapper'
+import Category from './pages/admin/product/category/Category'
 function App() {
   
 
@@ -14,19 +16,20 @@ function App() {
         <BrowserRouter>
             <Routes>
                        {/* CLIENT */}
-          <Route index element={<Home />} />
+          <Route path="/" element={<ClientRoute/>}>
+             <Route index element={<Home />} />
+          </Route>
           {/* <Route path={'product-detail/:id'} element={<ProductDetail />} /> */}
 
           {/* ADMIN */}
-          <Route path='/admin' element={<PraviteRoute />}>
+          <Route path="admin" element={<PraviteRoute />}>
             <Route index element={<Dashboad />} />
-            {/* <Route path={'user'} element={<UserManagement />} />
-            <Route path={'product'} element={<ProductManagement />} /> */}
+            {/* {/* <Route path={'user'} element={<UserManagement />} /> */}
+            <Route path="product" element={<Category />} /> 
           </Route>
-          <Route path='/register' element={<RegisterForm />} />
-          <Route path='/login' element={<LoginForm />} />
-
-          <Route path='*' element={<NotFound />} />
+          <Route path="register" element={<RegisterForm />} />
+          <Route path="login" element={<LoginForm />} />
+          <Route path="*" element={<NotFound />} />
             </Routes>
 
        

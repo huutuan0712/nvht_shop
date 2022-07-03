@@ -25,3 +25,8 @@ axiosClient.interceptors.response.use(function (response) {
   });
 
 export default axiosClient
+export const configUpload = {
+  headers: {
+   "content-type": "multipart/form-data",
+  },
+ };

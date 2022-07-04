@@ -31,7 +31,6 @@ export const getCategoryAction = createAsyncThunk(
     async (data, { rejectWithValue }) => {
      try {
       const res = await updateCategory(data.id,data.update);
-      console.log(res);
       return res;
      } catch (error) {
       return rejectWithValue(error);

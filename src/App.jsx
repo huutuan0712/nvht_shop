@@ -26,7 +26,7 @@ function App() {
           <Route path='/admin' element={<AdminRoute />}>
             <Route index element={<Dashboad />} />
             {/* {/* <Route path={'user'} element={<UserManagement />} /> */}
-            <Route path="product" element={<Category />} /> 
+            <Route path="product" element={<ProductWrapper />} /> 
           </Route>
           <Route path="register" element={<RegisterForm />} />
           <Route path="login" element={<LoginForm />} />

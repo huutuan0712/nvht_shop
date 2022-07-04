@@ -24,7 +24,7 @@ import {
     const { user, isLogin } = useSelector(state => state.auth );
     // const { preview, carts } = useAppSelector().cart;
     const [openSearch, setOpenSearch] = useState(false);
-    const { fetchLogout } = useLogOut();
+    const { fetchLogOut } = useLogOut();
     // const [showInfomation, setShowInfomation] = useState(false);
     const menuUser = (
      <Menu>
@@ -40,7 +40,7 @@ import {
       <Menu.Item
        key="3"
        icon={<UploadOutlined />}
-       onClick={() => fetchLogout()}>
+       onClick={() => fetchLogOut()}>
        Đăng xuất
       </Menu.Item>
      </Menu>

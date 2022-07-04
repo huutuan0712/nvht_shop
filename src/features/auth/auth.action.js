@@ -45,17 +45,17 @@ export const loginAction = createAsyncThunk(
       }
     }
   );
-  export const LogoutAction = createAsyncThunk(
-    '/logout',
-    async (params,{rejectWithValue}) =>{
-      try {
-        const response = await authApi.logout(params);
-        console.log("🚀 ~ file: auth.action.js ~ line 33 ~ error", response)
-         return response
-      } catch (error) {
+  // export const LogoutAction = createAsyncThunk(
+  //   '/logout',
+  //   async (params,{rejectWithValue}) =>{
+  //     try {
+  //       const response = await authApi.logout(params);
+  //       console.log("🚀 ~ file: auth.action.js ~ line 33 ~ error", response)
+  //        return response
+  //     } catch (error) {
       
-       return  rejectWithValue(error)
+  //      return  rejectWithValue(error)
 
-      }
-    }
-  );
+  //     }
+  //   }
+  // );

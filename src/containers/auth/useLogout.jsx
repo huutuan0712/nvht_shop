@@ -10,15 +10,19 @@ export default function useLogOut() {
     const navigate = useNavigate();
    
     const fetchLogOut = () => {
-     dispatch(logOutAction())
-      .then(unwrapResult)
-      .then((res) => logOutSuccess(res))
-      .catch((err) => console.log(err.message))
+     dispatch(setLogOut())
+     navigate("/login");
+      // .then(unwrapResult)
+      // .then((res) =>{
+      //   // dispatch(setLogOut(res));
+      //   navigate("/login");
+      // })
+      // .catch((err) => console.log(err.message))
      
     };
-    const logOutSuccess = () => {
-     dispatch(setLogOut());
-     navigate("/login");
-    };
+    // const logOutSuccess = () => {
+    //  dispatch(setLogOut());
+    //  navigate("/login");
+    // };
     return {fetchLogOut}
 }

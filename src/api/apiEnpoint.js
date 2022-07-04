@@ -9,6 +9,12 @@ const API_ENPOINT = {
        CREATE:'/category',
        UPDATE:'/category',
        DELETE:'/category/',
-    }
+    },
+    PRODUCT:{
+        GET:'/products',
+        CREATE:'/product',
+        UPDATE:'/product',
+        DELETE:'/product/',
+     }
 }
 export default API_ENPOINT

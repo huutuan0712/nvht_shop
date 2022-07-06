@@ -53,13 +53,11 @@ import AddProduct from "./AddProduct";
     key: "image",
     render: (image,posters) => {
      return (
-    
-        <Avatar key={Math.random()} src={image} />
-      // <Avatar.Group>
-      //  {image.map((it) => (
-      
-      //  ))}
-      // </Avatar.Group>
+      <Avatar.Group>
+      {image?.map((it) => (
+       <Avatar key={Math.random()} src={it.image} />
+      ))}
+     </Avatar.Group>
      );
     },
    },

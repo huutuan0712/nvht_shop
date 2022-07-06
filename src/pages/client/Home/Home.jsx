@@ -1,15 +1,16 @@
 import { Space } from "antd";
-import Banner from "../../pages/client/Home/banner/Banner";
-import HomeCategory from "../../pages/client/Home/category/HomeCategory";
-
+import Banner from './banner/Banner'
 import React from "react";
+import HomeCategory from "./category/HomeCategory";
+import ProductListing from "./product/Product";
 
 export default function Home() {
     return (
         <>
-            <Banner />
+            <Banner/>
             <Space direction="vertical">
                 <HomeCategory />
+                <ProductListing/>
             </Space>
         </>
     );

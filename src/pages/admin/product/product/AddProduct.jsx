@@ -25,7 +25,6 @@ export default function AddProduct(props) {
  const { hide, show } = props;
  const [onOpenSizeModal, setOnOpenSizeModal] = useState(false);
  const { category } = useSelector((state) => state.category.categories );
-console.log(category);
  const { Option } = Select;
  const { fileList, onChangeFileList, beforeUpload, onRemove } =
   useUpload();

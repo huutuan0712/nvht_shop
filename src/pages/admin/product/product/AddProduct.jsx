@@ -18,13 +18,15 @@ import useUpload from "../../../../hook/useUpload";
 import  useProduct  from "../../../../hook/useProduct";
 import React, { useCallback, useState } from "react";
 import { useSelector } from "react-redux";
-// import { ISizes } from "constants/models/product.model";
-// import { createRule } from "pages/client/cart/Payment";
+import SizeForm from "./size/addSize";
+
 
 export default function AddProduct(props) {
  const { hide, show } = props;
  const [onOpenSizeModal, setOnOpenSizeModal] = useState(false);
- const { category } = useSelector((state) => state.category.categories );
+ const  {category} = useSelector(state=>state.category.categories);
+//  console.log(categories);
+
  const { Option } = Select;
  const { fileList, onChangeFileList, beforeUpload, onRemove } =
   useUpload();
@@ -50,13 +52,14 @@ export default function AddProduct(props) {
     return;
    }
    fileList.forEach((item) => {
-    formData.append("posters", item.originFileObj);
+    formData.append("image", item.originFileObj);
    });
    formData.append("name", value.name);
-   formData.append("note", value.note);
-   formData.append("size", JSON.stringify(value.size));
-   formData.append("nsx", value.nsx);
-   formData.append("category", value.category);
+   formData.append("slug", value.slug);
+   formData.append("description", value.description);
+   formData.append("size", value.size);
+    formData.append("qty", value.qty);
+   formData.append("cate_id", value.cate_id);
    formData.append("price", value.price);
    addProduct(formData);
   },
@@ -94,6 +97,12 @@ export default function AddProduct(props) {
       <Input placeholder="Nhập tên sản phẩm" />
      </Form.Item>
      <Form.Item
+      label="Slug"
+      name="slug"
+      rules={[{required: true, message: "Tên sản phẩm không được để trống" }]}>
+      <Input placeholder="Nhập slug sản phẩm" />
+     </Form.Item>
+     <Form.Item
       label="Đơn giá"
       name="price"
       rules={[{required: true, message: "Đơn giá không được để trống" }]}>
@@ -106,17 +115,17 @@ export default function AddProduct(props) {
      </Form.Item>
      <Form.Item
       label="Mô tả"
-      name="note"
+      name="description"
       rules={[{required: true, message: "Mô tả không được để trống" }]}>
       <Input.TextArea placeholder="Nhập mô tả sản phẩm" />
      </Form.Item>
      <Form.Item
       label="Danh mục"
-      name="category"
+      name="cate_id"
       rules={[{required: true, message: "Danh mục không được để trống" }]}>
       <Select onChange={changeCate}>
        {category?.map((item, idx) => (
-        <Option key={Math.random()} value={item._id}>
+        <Option key={Math.random()} value={item.id}>
          {item.name}
         </Option>
        ))}
@@ -136,35 +145,19 @@ export default function AddProduct(props) {
       </Upload>
      </Form.Item>
      <Form.Item
-      wrapperCol={{ span: 24 }}
+      label="Số lượng"
+      name="qty"
+      rules={[{required: true, message: "Số lượng không được để trống" }]}>
+      <InputNumber placeholder="Nhập Số lượng sản phẩm" />
+     </Form.Item>
+     <Form.Item
+      label="Size"
       name="size"
-      dependencies={["size"]}
-      shouldUpdate={(prevValues, curValues) => {
-       return prevValues.size !== curValues.size;
-      }}>
-      <Typography.Paragraph code type="success">
-       Bảng size - Số lượng giày mỗi size
-      </Typography.Paragraph>
-      <Descriptions
-       style={{ width: "100%" }}
-       bordered
-       layout="vertical">
-       {form.getFieldValue("size")?.map((it) => (
-        <Descriptions.Item label={`Số ${it.size}`}>
-         {it.quantity} đôi
-        </Descriptions.Item>
-       ))}
-      </Descriptions>
-      <Button
-       block
-       type="dashed"
-       onClick={() => setOnOpenSizeModal(true)}
-       icon={<PlusOutlined />}>
-       Thêm size
-      </Button>
+      rules={[{required: true, message: "Số lượng không được để trống" }]}>
+      <Input placeholder="Nhập Size sản phẩm" />
      </Form.Item>
     </Form>
-    {/* <SizeForm
+     {/* <SizeForm
      visible={onOpenSizeModal}
      onCancel={() => setOnOpenSizeModal(false)}
     /> */}

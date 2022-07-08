@@ -6,8 +6,12 @@ import Dashboad from './pages/admin/Dashboad'
 import NotFound from './error/NotFound'
 import ClientRoute from './components/PraviteRoute/ClientRoute'
 import ProductWrapper from './pages/admin/product/ProductWrapper'
-import Category from './pages/admin/product/category/Category'
 import AdminRoute from './components/PraviteRoute/AdminRoute'
+import ProductDetail from './pages/client/Home/product-detail/ProductDetail'
+import ProductCategory from './pages/client/Home/product-category/ProductCategory'
+import Cart from './pages/client/cart/Cart'
+
+
 function App() {
   
 
@@ -17,16 +21,24 @@ function App() {
             <Routes>
                        {/* CLIENT */}
          
-          <Route path='/' element={<ClientRoute/>}>
+          <Route path="/" element={<ClientRoute/>}>
               <Route index element={<Home />} />
+            <Route path="product">
+              <Route path="detail/:id" element={<ProductDetail/>} />
+              <Route path="category/:path" element={<ProductCategory />} />
+            </Route>
+            <Route path="cart"  element={<Cart />}>
+     
+            </Route>
           </Route>
-          {/* <Route path={'product-detail/:id'} element={<ProductDetail />} /> */}
+        
 
           {/* ADMIN */}
-          <Route path='/admin' element={<AdminRoute />}>
+          <Route path="admin" element={<AdminRoute />}>
             <Route index element={<Dashboad />} />
             {/* {/* <Route path={'user'} element={<UserManagement />} /> */}
-            <Route path="product" element={<ProductWrapper />} /> 
+            <Route path="product" element={<ProductWrapper />}/>
+
           </Route>
           <Route path="register" element={<RegisterForm />} />
           <Route path="login" element={<LoginForm />} />

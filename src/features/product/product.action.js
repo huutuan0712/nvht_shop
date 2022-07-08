@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getProduct } from "../../api/productApi";
+import { createProduct, deleteProduct, getProduct, getProductByCategory, getProductDetail } from "../../api/productApi";
 
 export const getProductAction = createAsyncThunk(
     "/products",
@@ -25,3 +25,38 @@ export const getProductAction = createAsyncThunk(
      }
     }
    );
+   export const deleteProductAction = createAsyncThunk(
+    "/product",
+    async (body, { rejectWithValue }) => {
+     try {
+      const res = await deleteProduct(body);
+      return res;
+     } catch (error) {
+      return rejectWithValue(error);
+     }
+    }
+   );
+   export const getProductDetailAction = createAsyncThunk(
+    "product",
+    async (id, { rejectWithValue }) => {
+     try {
+      const res = await getProductDetail(id);
+      
+      return res;
+     } catch (error) {
+        return rejectWithValue(error);
+     }
+    }
+   );
+   export const getProductCategoryAction = createAsyncThunk(
+      "/product/get-category",
+      async (path, { rejectWithValue }) => {
+       try {
+        const res = await getProductByCategory(path);
+        
+        return res;
+       } catch (error) {
+        return rejectWithValue(error);
+       }
+      }
+     );

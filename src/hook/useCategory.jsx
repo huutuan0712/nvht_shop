@@ -7,6 +7,11 @@ export default function useCategory() {
   const dispatch = useDispatch();
   
   const fetchCategory =  () => {
+  //   loading?.show();
+  // dispatch(getCategoryAction({}))
+  //  .then(unwrapResult)
+  //  .then((res) => dispatch(setCategory(res.data)))
+  //  .finally(() => loading?.hide());
     dispatch(getCategoryAction())
       .then(unwrapResult)
       .then((res) => dispatch(setCategory(res)))

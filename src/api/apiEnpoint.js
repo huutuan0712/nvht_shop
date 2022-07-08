@@ -15,6 +15,15 @@ const API_ENPOINT = {
         CREATE:'/product',
         UPDATE:'/product',
         DELETE:'/product/',
+        GET_DETAIL:'/product',
+        GET_PRODUCT_CATE:'/product/get-category'
+     },
+     CART:{
+        CREATE:'cart/add-cart',
+        DELETE:'cart/delete-cart',
+        UPDATE:'cart/update-cart',
+        GET_CART_PREVIEW:'cart/cart-preview',
+        GET_ALL_CART:'cart/get-all-cart',
      }
 }
 export default API_ENPOINT

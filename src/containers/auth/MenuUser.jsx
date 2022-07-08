@@ -12,7 +12,7 @@ export default function MenuUser() {
   if (category)
    return category.map((it) => (
       <Menu.Item key={Math.random() + it.id}>
-       <Link to={`/product/${it.slug}`}>{it.name}</Link>
+       <Link to={`/product/category/${it.slug}`}>{it.name}</Link>
       </Menu.Item>
    ));
   else return null;

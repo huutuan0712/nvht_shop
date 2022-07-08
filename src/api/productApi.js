@@ -10,6 +10,11 @@ export const  createProduct=(body)=>{
 export const  updateProduct=(id,data)=>{
       axiosClient.post(`${API_ENPOINT.PRODUCT.UPDATE}/${id}`, data,{...configUpload})
 };
-  
+
+export const getProductDetail = (id) =>
+ axiosClient.get(`${API_ENPOINT.PRODUCT.GET_DETAIL}/${id}`);
 export const deleteProduct = (params) =>
  axiosClient.delete(`${API_ENPOINT.PRODUCT.UPDATE}/${params.id}`);
+
+ export const getProductByCategory = (path) =>
+ axiosClient.get(`${API_ENPOINT.PRODUCT.GET_PRODUCT_CATE}/${path}`);

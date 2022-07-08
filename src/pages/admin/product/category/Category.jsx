@@ -24,8 +24,8 @@ import React, { useCallback, useState } from "react";
 import {useSelector} from 'react-redux';
 import useCategory from "../../../../hook/useCategory";
    export default function Category() {
-    const { categories } = useSelector(state=>state.category);
-    console.log(categories);
+    const  categories  = useSelector(state=>state.category.categories);
+
     const [openAddCategory, setOpenAddCategory] = useState(false);
     const { beforeUpload, fileList, onChangeFileList, onRemove } = useUpload();
     const { fetchCategory,addCategory,updateCategory,deleteCategory} = useCategory();

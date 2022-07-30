@@ -16,6 +16,7 @@ export default function Register() {
      title="Thành công"
      subTitle="Đăng ký thành công. Hãy check mail để xác nhận tài khoản"
     />
+    
    </div>
   );
  return (

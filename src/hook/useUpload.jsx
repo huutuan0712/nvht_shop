@@ -3,7 +3,7 @@ import { useState } from "react";
 
 export default function useUpload() {
  const [fileList, setFileList] = useState([]);
-
+ 
  const onRemove = (file) => {
   const index = fileList.indexOf(file);
   const newFileList = fileList.slice();
@@ -11,7 +11,8 @@ export default function useUpload() {
   return true;
  };
  const beforeUpload = (file) => {
-  setFileList([...fileList, file]);
+  
+  setFileList([...fileList,file]);
   return false;
  };
 

@@ -4,14 +4,27 @@ import {useDispatch} from 'react-redux'
 import { unwrapResult } from "@reduxjs/toolkit";
 import { setAuth } from "../../../features/auth/auth.slice";
 import {useNavigate} from 'react-router-dom'
+import { useLoading } from '../../../hook/useLoading';
+import { toastError, toastSuccess } from '../../../utils/toast';
 export default function useLogin() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const fetchLogin = async (data) =>{
+    const loading = useLoading();
+    const fetchLogin = (data) =>{
+        loading?.show();
         dispatch(loginAction(data))
         .then(unwrapResult)
-        .then(res => loginSuccess(res))
-        .catch(error =>{console.log(error.message );})
+        .then(res => {
+            loginSuccess(res)
+            toastSuccess('Login Success');
+        })
+        .catch(error =>{
+            console.log(error.message );
+            toastError(error.message);
+        })
+        .finally(() => {
+            loading?.hide();
+        });
     };
     const loginSuccess = (res)=>{
         dispatch(setAuth(res))

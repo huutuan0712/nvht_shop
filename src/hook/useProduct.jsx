@@ -1,11 +1,16 @@
 import { unwrapResult } from "@reduxjs/toolkit";
-import { useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addProductAction, deleteProductAction, getProductAction, getProductCategoryAction } from "../features/product/product.action";
 import { setProduct } from "../features/product/product.slice";
+import { toastError, toastSuccess } from "../utils/toast";
 import { useLoading } from "./useLoading";
 
-export default function useProduct() {
+
+
+export const ProductContext =createContext({});
+export const useProduct = () => useContext(ProductContext);
+export default function ProductProvider({ children }) {
   const [products, setProducts] = useState([]);
   const [productCate, setProductCate] = useState([]);
   const loading = useLoading();
@@ -19,11 +24,12 @@ export default function useProduct() {
         });
     };
     const addProduct = (formData) => {
+      
       loading?.show();
       dispatch(addProductAction(formData))
        .then(unwrapResult)
        .then((res) => {
-        console.log(res.message);
+        toastSuccess(res.message);
        })
        .catch((err) => {
         loading?.hide();
@@ -42,15 +48,34 @@ export default function useProduct() {
      };
     
     const deleteProduct = (id) => {
+      loading?.show();
       dispatch(deleteProductAction({ id }))
        .then(unwrapResult)
        .then((res) => {
-        console.log(res.message);
+        toastSuccess(res.message);
         fetchProduct();
        })
-       .catch(() => {
-        console.log(error.message);
+       .catch((err) => {
+        toastError(err.message);
        })
+       .finally(() => loading?.hide());
      };
-    return {fetchProduct,products,deleteProduct,addProduct,getProduct,productCate}
+     useEffect(() => {
+      fetchProduct();
+     }, []);
+    return (
+      <ProductContext.Provider
+       value={{
+        fetchProduct,
+        deleteProduct,
+        addProduct,
+        products,
+        getProduct,
+        productCate
+       }}>
+       {children}
+      </ProductContext.Provider>
+     );
+     
+    
 }

@@ -12,20 +12,23 @@ import {
     Menu,
     Space,
    } from "antd";
- 
-//    import Search from "components/search/Search";
    import useLogOut from "../../containers/auth/useLogout";
-//    import Information from "containers/information/Information";
-   import React, { useState } from "react";
-    import { useSelector } from "react-redux";
+   import React, { useEffect, useState } from "react";
+   import { useSelector } from "react-redux";
    import { Link, useNavigate } from "react-router-dom";
+   import { useCart } from "../../hook/useCart";
+import Search from "../../components/search/Search";
+import Information from "../infomation/Information";
+import LoginForm from "../../pages/auth/login/LoginForm";
    export default function Auth() {
     const navigate = useNavigate();
     const { user, isLogin } = useSelector(state => state.auth );
-    // const { preview, carts } = useAppSelector().cart;
+    const { preview, carts } = useSelector(state=>state.cart);
+    const {myCart,} = useCart();
     const [openSearch, setOpenSearch] = useState(false);
     const { fetchLogOut } = useLogOut();
-    // const [showInfomation, setShowInfomation] = useState(false);
+    const [showInfomation, setShowInfomation] = useState(false);
+
     const menuUser = (
      <Menu>
       <Menu.Item
@@ -52,7 +55,7 @@ import {
        value={""}
        onClick={() => setOpenSearch(true)}
       />
-      <Badge  showZero>
+      <Badge count={myCart?.count}  showZero>
        <Button
         onClick={() => navigate("/cart")}
         icon={<ShoppingCartOutlined />}
@@ -69,11 +72,11 @@ import {
       ) : (
        <Button onClick={() => navigate("/login")}>Đăng nhập</Button>
       )}
-      {/* <Information
+      <Information
        visible={showInfomation}
        onHide={() => setShowInfomation(false)}
       />
-      <Search visible={openSearch} onHide={() => setOpenSearch(false)} /> */}
+      <Search visible={openSearch} onHide={() => setOpenSearch(false)} />
      </Space>
     );
    }

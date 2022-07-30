@@ -1,87 +1,91 @@
 import { DeleteOutlined } from "@ant-design/icons";
 import { Avatar, Button, InputNumber, Table, Tag } from "antd";
+import Item from "antd/lib/list/Item";
 import React from "react";
 import { useSelector } from "react-redux";
 
 import InputNumberWait from "../../../components/InputNumberWait/InputNumberWait";
 import { useCart } from "../../../hook/useCart";
+// import useCart from "../../../../../hook/useCart";
 import { formatMoney } from "../../../utils/common";
 
 export default function CartList() {
 
- const { removeCart, updateQuantity } = useCart();
- const { preview } = useSelector();
+ const { removeCart,updateQuantity } = useCart();
+ const {cartItem } = useSelector(state=>state.cart.preview);
 
+ const {user}  = useSelector(state=>state.auth);
  const columns = [
   {
    title: "Hình ảnh",
-   dataIndex: "poster",
+   dataIndex: "product",
    width: "10%",
-   render: (text, record) => (
-    <Avatar src={record?.posters?.[0].url} size="large" />
-   ),
+   render: (text, product) =>{
+
+      let images = JSON.parse(product.product.image);
+     return  <Avatar src={images[1]} size="large" />
+   }
   },
   {
    title: "Tên sản phẩm",
-   dataIndex: "name",
-   key: "name",
+   dataIndex: "product",
+   key: "product",
    width: "15%",
-   ...(getColumnSearchProps("name") ),
+   render: (product) => <>{product.name}</>,
+    // ...(getColumnSearchProps("name") ),
   },
   {
    title: "Size",
-   dataIndex: "size",
-   key: "size",
+   dataIndex: "product",
+   key: "product",
    width: "10%",
-   render: (text) => <>{text}</>,
+   render: (product) => <>{product.size}</>,
   },
   {
    title: "Đơn giá",
-   dataIndex: "price",
-   key: "price",
+   dataIndex: "product",
+   key: "product",
    width: "10%",
-   render: (price) => (
-    <Tag color={"green"}>{price && formatMoney(price)}</Tag>
+   render: (product) => (
+    <Tag color={"green"}>{product.price && formatMoney(product.price)}</Tag>
    ),
   },
   {
    title: "Số lượng",
-   dataIndex: "quantity",
-   key: "quantity",
+   dataIndex: "qty",
+   key: "qty",
    width: "10%",
    render: (text, record) => {
-    return record.maxSize !== 0 ? (
-     <InputNumberWait
-      addonAfter="Đôi"
-      max={record.maxSize}
-      data={record?.qty || 0}
-      fn={(value) => {
-       updateQuantity(record.idProduct, record.size, value);
-      }}
-     />
-    ) : (
-     <>Đã hết hàng</>
-    );
+   
+    return <InputNumberWait
+       addonAfter="Đôi"
+       data={record?.prod_qty|| 0}
+       fn={(value) => {
+        updateQuantity({
+          id:user?.id ||undefined ,
+          prod_id:record.id,
+          prod_qty:value
+        });
+       }}
+      />
+   
    },
   },
-  {
-   title: "Tổng tiền",
-   dataIndex: "cost",
-   key: "cost",
-   width: "10%",
-   render: (cost) => (
-    <Tag color={"green"}>{cost && formatMoney(cost)}</Tag>
-   ),
-  },
+  
   {
    title: "Thao tác",
+   dataIndex: "product",
+   key: "product",
    width: "10%",
-   render: (text, record) => (
-    <Button
-     icon={<DeleteOutlined />}
-     onClick={() => removeCart(record.idProduct, record.size)}
-    />
-   ),
+   render: ( product) => {
+    return  <Button
+    icon={<DeleteOutlined />}
+    onClick={() => removeCart({
+     id:user?.id ||undefined ,
+     prod_id:product.id
+   })}
+   />
+   }
   },
  ];
 
@@ -89,10 +93,10 @@ export default function CartList() {
   <div style={{ width: "100%", overflow: "auto" }}>
    <Table
     bordered
-    dataSource={preview?.list || []}
+    dataSource={cartItem || []}
     columns={columns}
     pagination={false}
-    rowKey={(record) => Math.random()}
+     rowKey={(record) => Math.random()}
    />
   </div>
  );

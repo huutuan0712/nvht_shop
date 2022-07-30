@@ -6,6 +6,7 @@ import ProductCard from "../../../components/product-card/ProductCard";
 export default function ProductListing() {
 //  const { products } = useProduct();
     const products = useSelector(state =>state.product.Products.product);
+   
  const mapProduct = useMemo(() => {
   return products?.map((it) => (
    <Col

@@ -11,5 +11,12 @@ const authApi = {
       return axiosClient.post(API_ENPOINT.AUTH.LOGOUT,body)
     }
   }
-  
+
   export default authApi;
+
+  export const  changePassword=(body)=>{
+    return axiosClient.post(API_ENPOINT.AUTH.CHANGE_PASSWORD,body)
+  };
+  export const  updateInformation=(body)=>{
+    return axiosClient.post(API_ENPOINT.AUTH.UPDATE_USER,body)
+};

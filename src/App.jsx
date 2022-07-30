@@ -10,6 +10,9 @@ import AdminRoute from './components/PraviteRoute/AdminRoute'
 import ProductDetail from './pages/client/Home/product-detail/ProductDetail'
 import ProductCategory from './pages/client/Home/product-category/ProductCategory'
 import Cart from './pages/client/cart/Cart'
+import Compose from './containers/compose/Compose'
+import CartAdmin from './pages/admin/cart/CartAdmin'
+import CartManagement from './pages/client/cart-management/CartManagement'
 
 
 function App() {
@@ -18,34 +21,31 @@ function App() {
   return (
     <div className="App">
         <BrowserRouter>
+        <Compose>
             <Routes>
                        {/* CLIENT */}
-         
-          <Route path="/" element={<ClientRoute/>}>
-              <Route index element={<Home />} />
-            <Route path="product">
-              <Route path="detail/:id" element={<ProductDetail/>} />
-              <Route path="category/:path" element={<ProductCategory />} />
-            </Route>
-            <Route path="cart"  element={<Cart />}>
-     
-            </Route>
-          </Route>
-        
-
-          {/* ADMIN */}
-          <Route path="admin" element={<AdminRoute />}>
-            <Route index element={<Dashboad />} />
-            {/* {/* <Route path={'user'} element={<UserManagement />} /> */}
-            <Route path="product" element={<ProductWrapper />}/>
-
-          </Route>
-          <Route path="register" element={<RegisterForm />} />
-          <Route path="login" element={<LoginForm />} />
-          <Route path="*" element={<NotFound />} />
-            </Routes>
-
-      
+                <Route path="/" element={<ClientRoute/>}>
+                  <Route index element={<Home />} />
+                  <Route path="product">
+                    <Route path="detail/:id" element={<ProductDetail/>} />
+                    <Route path="category/:path" element={<ProductCategory />} />
+                  </Route>
+                  <Route path="cart"  element={<Cart />}/>
+                  <Route path="cart">
+                  <Route path={"my-cart"} element={<CartManagement />} />
+                  </Route>
+                </Route>
+              {/* ADMIN */}
+              <Route path="admin" element={<AdminRoute />}>
+                <Route index element={<Dashboad />} />
+                <Route path="cart" element={<CartAdmin />} />
+                <Route path="product" element={<ProductWrapper />}/>
+              </Route>
+              <Route path="register" element={<RegisterForm />} />
+              <Route path="login" element={<LoginForm />} />
+              <Route path="*" element={<NotFound />} />
+          </Routes>
+          </Compose>
         </BrowserRouter>
         
     </div>

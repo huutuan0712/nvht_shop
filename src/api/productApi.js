@@ -13,8 +13,12 @@ export const  updateProduct=(id,data)=>{
 
 export const getProductDetail = (id) =>
  axiosClient.get(`${API_ENPOINT.PRODUCT.GET_DETAIL}/${id}`);
+ 
 export const deleteProduct = (params) =>
  axiosClient.delete(`${API_ENPOINT.PRODUCT.UPDATE}/${params.id}`);
 
  export const getProductByCategory = (path) =>
  axiosClient.get(`${API_ENPOINT.PRODUCT.GET_PRODUCT_CATE}/${path}`);
+
+ export const searchProduct = (path) =>
+ axiosClient.get(`${API_ENPOINT.PRODUCT.SEARCH_PRODUCT}/${path}`);

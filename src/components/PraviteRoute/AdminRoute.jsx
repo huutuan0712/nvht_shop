@@ -7,7 +7,7 @@ export default function AdminRoute() {
     const { isLogin, user } = useSelector((state) => state?.auth);
       
     return isLogin && user &&
-   user?.role===1 ? (
+   user?.role ===1 ? (
     <DefaultLayout>
      <Outlet />
     </DefaultLayout>

@@ -8,7 +8,7 @@ import {
 } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { useLoading } from "../../../../hook/useLoading";
+import  {useLoading}  from "../../../../hook/useLoading";
 const ProductDetailContext = createContext(
  {}
 );
@@ -21,7 +21,6 @@ export default function ProductDetailProvider({ children }) {
 //  const [comment, setComment] = useState([]);
  const [posters, setPosters] = useState([]);
  const [detail, setDetail] = useState({});
-//  console.log(posters,detail);
  const fetchDetail = () => {
   loading?.show();
   dispatch(getProductDetailAction(id ))

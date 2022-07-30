@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import authApi from '../../api/authApi'
+import authApi, { changePassword, updateInformation } from '../../api/authApi'
+
 //  Thunk API
 export const loginAction = createAsyncThunk(
     '/login',
@@ -45,6 +46,20 @@ export const loginAction = createAsyncThunk(
       }
     }
   );
+    export const changePasswordAction = createAsyncThunk(
+    'auth/change-pass',
+    async (params,{rejectWithValue}) =>{
+      try {
+        const response = await changePassword(params);
+      
+         return response
+      } catch (error) {
+      
+       return  rejectWithValue(error)
+
+      }
+    }
+  );
   // export const LogoutAction = createAsyncThunk(
   //   '/logout',
   //   async (params,{rejectWithValue}) =>{
@@ -59,3 +74,17 @@ export const loginAction = createAsyncThunk(
   //     }
   //   }
   // );
+  export const updateInformationdAction = createAsyncThunk(
+    'auth/user-profile',
+    async (params,{rejectWithValue}) =>{
+      try {
+        const response = await updateInformation(params);
+        console.log("🚀 ~ file: auth.action.js ~ line 33 ~ error", response)
+         return response
+      } catch (error) {
+      
+       return  rejectWithValue(error)
+
+      }
+    }
+  );

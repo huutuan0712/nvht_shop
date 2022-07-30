@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo } from "react";
 import { Col, Result, Row } from "antd";
 import { useParams } from "react-router-dom";
-import useProduct from "../../../../hook/useProduct";
 import ProductCard from "../../../components/product-card/ProductCard";
+import { useProduct } from "../../../../hook/useProduct";
 
 function ProductCategory() {
  const { productCate, getProduct } = useProduct();

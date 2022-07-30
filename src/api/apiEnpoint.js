@@ -2,7 +2,9 @@ const API_ENPOINT = {
     AUTH:{
         LOGIN:'/auth/login',
         REGISTER:'/auth/register',
-        LOGOUT:'/auth/logout'
+        LOGOUT:'/auth/logout',
+        CHANGE_PASSWORD:'/auth/change-pass',
+        UPDATE_USER:'/auth/user-profile'
     },
     CATEGORY:{
        GET:'/categorys',
@@ -16,14 +18,21 @@ const API_ENPOINT = {
         UPDATE:'/product',
         DELETE:'/product/',
         GET_DETAIL:'/product',
-        GET_PRODUCT_CATE:'/product/get-category'
+        GET_PRODUCT_CATE:'/product/get-category',
+        SEARCH_PRODUCT:'/product/search-product'
      },
      CART:{
         CREATE:'cart/add-cart',
         DELETE:'cart/delete-cart',
         UPDATE:'cart/update-cart',
         GET_CART_PREVIEW:'cart/cart-preview',
-        GET_ALL_CART:'cart/get-all-cart',
+        GET_CART:'cart/get-user',
+       GET_TOTAL_CART:'cart/total-cart',
+       PLACE_ORDER:'cart/placeorder',
+       GET_ALL_CART:'admin/cart-order',
+       CHANGE_CART_ADMIN:'admin/cart-status',
+       MY_ORDER:'cart/my-order',
+       PAYMENT_MOMO:'momo-payment'
      }
 }
 export default API_ENPOINT

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { createProduct, deleteProduct, getProduct, getProductByCategory, getProductDetail } from "../../api/productApi";
+import { createProduct, deleteProduct, getProduct, getProductByCategory, getProductDetail, searchProduct } from "../../api/productApi";
 
 export const getProductAction = createAsyncThunk(
     "/products",
@@ -54,6 +54,17 @@ export const getProductAction = createAsyncThunk(
        try {
         const res = await getProductByCategory(path);
         
+        return res;
+       } catch (error) {
+        return rejectWithValue(error);
+       }
+      }
+     );
+     export const searchProductDetailAction = createAsyncThunk(
+      "/product/",
+      async (path, { rejectWithValue }) => {
+       try {
+        const res = await searchProduct(path);
         return res;
        } catch (error) {
         return rejectWithValue(error);

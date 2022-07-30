@@ -9,10 +9,10 @@ export default function useLogOut() {
     const navigate = useNavigate();
     const fetchLogOut = () => {
         dispatch(setLogOut())
-                // .then(unwrapResult)
+                .then(unwrapResult)
                 .then((res) => {
-                    // dispatch(setLogOut());
-                    navigate("/login");
+                    //  dispatch(setLogOut());
+                    navigate("/");
                 })
     }
 

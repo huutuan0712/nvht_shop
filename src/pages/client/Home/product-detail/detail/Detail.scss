@@ -54,18 +54,18 @@
       }
     }
   
-    .price, .discount {
+    .price{
+      
       text-align: center !important;
       font-family: "Poppins", sans-serif;
-      color: red;
+      span{
+      margin-top: 3rem;
       font-weight: bold;
       font-size: 3rem;
+      }
+      
     }
   
-    .discount {
-      color: green;
-      font-weight: bold;
-      font-size: 1.3rem;
-    }
+   
   }
   

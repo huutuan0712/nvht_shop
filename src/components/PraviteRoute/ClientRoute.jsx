@@ -8,7 +8,13 @@ export default function ClientRoute() {
  const { isLogin, user } = useSelector(
   (state) => state?.auth
  );
- 
+  if(!isLogin){
+    return (
+      <DefaultLayout>
+       <Outlet />
+      </DefaultLayout>
+     );
+  }
   return isLogin && user ? (
    <DefaultLayout>
     <Outlet />
@@ -17,9 +23,5 @@ export default function ClientRoute() {
    <Navigate to="/login" />
   );
 
-//  return (
-//   <DefaultLayout>
-//    <Outlet />
-//   </DefaultLayout>
-//  );
+ 
 }

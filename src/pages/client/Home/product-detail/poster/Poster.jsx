@@ -7,7 +7,12 @@ import { useProductDetail } from "../useProductPoster";
 import "./Poster.scss";
 
 export default function Poster() {
- const { posters } = useProductDetail();
+ let { posters } = useProductDetail();
+ if (typeof posters === 'string') {
+     posters = JSON.parse(posters);
+ }
+
+
  const config= {
   slidesToScroll: 1,
   slidesToShow: 1,
@@ -18,9 +23,9 @@ export default function Poster() {
  };
  return (
   <Slider {...config} className="posters">
-   {/* {posters.map((it) => (
+   {posters.map((it) => (
     <Image key={Math.random()} src={it} width="100%" />
-   ))} */}
+   ))} 
   </Slider>
  );
 }

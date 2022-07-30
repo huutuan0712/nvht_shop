@@ -15,10 +15,10 @@ import {
 import { UploadFile } from "antd/lib/upload/interface";
 import useUpload from "../../../../hook/useUpload";
 // import SizeForm from "pages/admin/product/product/size/AddSizeModal";
-import  useProduct  from "../../../../hook/useProduct";
+
 import React, { useCallback, useState } from "react";
 import { useSelector } from "react-redux";
-import SizeForm from "./size/addSize";
+import { useProduct } from "../../../../hook/useProduct";
 
 
 export default function AddProduct(props) {
@@ -43,17 +43,19 @@ export default function AddProduct(props) {
  const onSubmit = useCallback(
   (value) => {
    let formData = new FormData();
-   if (fileList.length < 4) {
+      if (fileList.length < 4) {
     message.error("Phải có đủ 4 ảnh");
     return;
    }
-   if (!value.size) {
-    message.error("Phải ít nhất 1 size");
-    return;
-   }
-   fileList.forEach((item) => {
-    formData.append("image", item.originFileObj);
-   });
+//    if (!value.size) {
+//     message.error("Phải ít nhất 1 size");
+//     return;
+//    }
+console.log(fileList);
+  fileList.forEach((item) => {
+
+  formData.append("image[]",item.originFileObj);
+});
    formData.append("name", value.name);
    formData.append("slug", value.slug);
    formData.append("description", value.description);
@@ -62,6 +64,7 @@ export default function AddProduct(props) {
    formData.append("cate_id", value.cate_id);
    formData.append("price", value.price);
    addProduct(formData);
+
   },
   [form, fileList]
  );
@@ -131,7 +134,7 @@ export default function AddProduct(props) {
        ))}
       </Select>
      </Form.Item>
-     <Form.Item label="Hình ảnh">
+     <Form.Item label="Hình ảnh"  >
       <Upload
        accept=".jpg, .jpeg, .png"
        fileList={fileList}
@@ -140,8 +143,9 @@ export default function AddProduct(props) {
        listType="picture-card"
        maxCount={4}
        multiple
-       onChange={onChangeFileList}>
-       {fileList.length < 4 && "+ Upload"}
+       onChange={onChangeFileList}
+        >
+       {fileList.length <4 && "+ Upload"}
       </Upload>
      </Form.Item>
      <Form.Item
@@ -157,10 +161,7 @@ export default function AddProduct(props) {
       <Input placeholder="Nhập Size sản phẩm" />
      </Form.Item>
     </Form>
-     {/* <SizeForm
-     visible={onOpenSizeModal}
-     onCancel={() => setOnOpenSizeModal(false)}
-    /> */}
+     
    </Form.Provider>
   </Modal>
  );

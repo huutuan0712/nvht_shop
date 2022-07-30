@@ -11,7 +11,7 @@ import "./ProductCard.scss";
 export default function ProductCard({ data, className }) {
  const navigate = useNavigate();
  const { Text, Link } = Typography;
-
+ let images = JSON.parse(data.image);
  return (
   <Card
    className={classNames("product-card", className)}
@@ -19,21 +19,16 @@ export default function ProductCard({ data, className }) {
    cover={
     <img
      onClick={() => navigate(`/product/detail/${data?.id}`)}
-     src={data.image}
+     src={images[0]}
     />
    }>
    <Meta title={data?.name} />
-   {/* {data?.discount > 0 && (
-    <img className="sale-img" src={saleImage} alt="" />
-   )} */}
+ 
    <Meta
     title={
      <Space className="">
       {data.discount > 0 ? (
        <>
-        {/* <Text type="danger">
-         {formatMoney(data?.price - data?.discount)}
-        </Text> */}
         <Text delete>{formatMoney(data?.price)}</Text>
        </>
       ) : (

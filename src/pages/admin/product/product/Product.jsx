@@ -18,23 +18,16 @@ import {
     Typography,
    } from "antd";;
   
-    // import useDefineSearch from "hook/useDefineSearch";
-  //  import { useProduct } from "hook/useProduct";
-    // import AddProduct from "pages/admin/product/product/AddProduct";
-  //  import EditCategory from "pages/admin/product/product/category/EditCategory";
-  //  import EditSize from "pages/admin/product/product/size/EditSize";
+  
    import React, { useState } from "react";
   import { useSelector } from "react-redux";
   import InputNumberWait from "../../../../components/InputNumberWait/InputNumberWait";
-  import useProduct from "../../../../hook/useProduct";
+import { useProduct } from "../../../../hook/useProduct";
   import { formatDate } from "../../../../utils/common";
   import AddProduct from "./AddProduct";
-  //  import { formatDate, formatMoney } from "utils/common";
-  //  import _debounce from "lodash/debounce";
-  //  import InputNumberWait from "components/inputNumberDebounce/InputNumberWait";
    export default function Product() {
     const [openAddModal, setOpenAddModal] = useState(false);
-    const { fetchProduct,deleteProduct } = useProduct();
+    const { fetchProduct, deleteProduct} = useProduct();
     const [openEditSize, setOpenEditSize] = useState({
      editing: false,
      product: {} ,
@@ -43,19 +36,19 @@ import {
      editing: false,
      product: {} ,
     });
-    const products = useSelector(state=>state.product.Products);
-    console.log(products);
+     const products = useSelector(state=>state.product.Products);
+
     const columns = [
      {
       title: "Hình ảnh",
       dataIndex: "image",
       key: "image",
       render: (image,posters) => {
+        let images = JSON.parse(image);
        return (
-        // <Avatar key={Math.random()} src={image.originFileObj} />
         <Avatar.Group>
-        {JSON.parse(image).map(it => (
-         <Avatar key={Math.random()} src={it.originFileObj} />
+        {images.map(it => (
+         <Avatar key={Math.random()} src={it} />
         ))}
        </Avatar.Group>
        );
@@ -118,7 +111,7 @@ import {
       render: (text, record) => (
        <Space>
         <Typography>
-         {record.category.name}
+         {record.category.name }
         </Typography>
         <Button
          onClick={() =>

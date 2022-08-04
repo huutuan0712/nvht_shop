@@ -22,3 +22,6 @@ export const deleteProduct = (params) =>
 
  export const searchProduct = (path) =>
  axiosClient.get(`${API_ENPOINT.PRODUCT.SEARCH_PRODUCT}/${path}`);
+
+export const sortProduct = () =>
+    axiosClient.get(API_ENPOINT.PRODUCT.SORT_PRODUCT);

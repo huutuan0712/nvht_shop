@@ -2,8 +2,8 @@ import {
     DeleteOutlined,
     EditOutlined,
     PlusOutlined,
-    ReloadOutlined,
-   } from "@ant-design/icons";
+    ReloadOutlined, SortDescendingOutlined,
+} from "@ant-design/icons";
    import {
     Avatar,
     Badge,
@@ -37,12 +37,14 @@ import { useProduct } from "../../../../hook/useProduct";
      product: {} ,
     });
      const products = useSelector(state=>state.product.Products);
-
+    console.log(products);
     const columns = [
+      
      {
       title: "Hình ảnh",
       dataIndex: "image",
       key: "image",
+      defaultSortOrder: 'descend',
       render: (image,posters) => {
         let images = JSON.parse(image);
        return (
@@ -72,6 +74,10 @@ import { useProduct } from "../../../../hook/useProduct";
       title: "Đơn giá",
       dataIndex: "price",
       key: "price",
+      sorter: {
+         compare: (a, b) => a.price - b.price,
+         multiple: 3,
+       },
       render: (text, record) => (
        <InputNumberWait
         addonAfter="VND"
@@ -152,6 +158,7 @@ import { useProduct } from "../../../../hook/useProduct";
        );
       },
      },
+
     ];
    
     return (
@@ -165,6 +172,7 @@ import { useProduct } from "../../../../hook/useProduct";
        <Button onClick={() => fetchProduct()} icon={<ReloadOutlined />}>
         Làm mới
        </Button>
+         
       </Space>
       <Table
        rowKey={(record) => record.id}
@@ -185,20 +193,7 @@ import { useProduct } from "../../../../hook/useProduct";
        show={openAddModal}
        hide={() => setOpenAddModal(false)}
       />
-      {/* <EditSize
-       product={openEditSize.product}
-       onHide={() =>
-        setOpenEditSize({ product: {} , editing: false })
-       }
-       visible={openEditSize.editing}
-      /> */}
-      {/* <EditCategory
-       product={openCategory.product}
-       onHide={() =>
-        setOpenCategory({ product: {} , editing: false })
-       }
-       visible={openCategory.editing}
-      /> */}
+
      </div>
     );
    }

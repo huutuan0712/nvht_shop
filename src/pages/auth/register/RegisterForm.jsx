@@ -1,10 +1,11 @@
 import { Button, Form, Input, Result, Space } from "antd";
 import useRegister from "./useRegister";
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./Register.scss";
 export default function Register() {
  const { isSuccess, register } = useRegister();
+ const navigate = useNavigate();
  const onFinish = (values) => {
   register(values);
  };
@@ -15,6 +16,12 @@ export default function Register() {
      status={"success"}
      title="Thành công"
      subTitle="Đăng ký thành công. Hãy check mail để xác nhận tài khoản"
+     extra={[
+        <Button type="primary" key="console" onClick={()=>navigate("/login")}>
+          Đăng nhập
+        </Button>,
+     
+      ]}
     />
     
    </div>

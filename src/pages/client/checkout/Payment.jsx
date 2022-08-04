@@ -1,12 +1,13 @@
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { Button, Form, Image, Input, Result, Select, Tabs } from "antd";
 import LogoMomo from '../../../assets/img/logo_momo.png'
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { CartStatus } from "../../../features/cart/cart.model";
 import { useCart } from "../../../hook/useCart";
 import "./Payment.scss";
+import useProvince from "../../../hook/useProvince";
 export const createRule = (name) => ({
  required: true,
  message: `${name} không được để trống!`,
@@ -16,7 +17,7 @@ export default function Payment() {
  const [form] = Form.useForm();
  const { paidWithoutPaypal,total ,url} =useCart();
  let total_price = Math.round(total/23000,2);
-
+const {city,ward,district,onChangeWard,onChangeCity} = useProvince();
  const { TabPane } = Tabs;
  const { isLogin ,user} = useSelector(state=>state.auth);
  const navigate = useNavigate();
@@ -30,11 +31,11 @@ export default function Payment() {
     xa:value.ward,
     name: value.name,
     phone: value.phone,
-   };
+   }
  paidWithoutPaypal(data);
   });
  }, [form]);
- 
+
  if (!isLogin) {
   return (
    <Result
@@ -122,22 +123,57 @@ export default function Payment() {
        <Input />
       </Form.Item>
       <Form.Item
-       label="Tỉnh"
+       label="Tỉnh/Thành phố"
        name="city"
        rules={[createRule("Tỉnh")]}>
-        <Input />
+        <Select
+        loading={!city.length}
+        disabled={!city.length}
+        onChange={onChangeCity}
+        >
+        {city?.map((it,idx) => {
+         return (
+            <Select.Option key={idx.id}  value={it.id}>
+            {it._name}
+           </Select.Option>
+         );
+        })}
+       </Select>
       </Form.Item>
       <Form.Item
-       label="Huyện"
+       label="Huyện/Quận"
        name="district"
        rules={[createRule("Huyện")]}>
-        <Input />
+         <Select
+        loading={!district.length}
+        disabled={!district.length}
+        onChange={onChangeWard}
+        >
+        {district?.map((it,idx) => {
+         return (
+          <Select.Option key={idx.id}  value={it.id}>
+           {`${it._prefix} ${it._name}`}
+          </Select.Option>
+         
+         );
+        })}
+       </Select>
       </Form.Item>
       <Form.Item 
-      label="Xã" 
+      label="Xã/Phường" 
       name="ward" 
       rules={[createRule("Xã")]}>
-      <Input />
+        <Select 
+        disabled={!ward.length}
+        >
+        {ward?.map((it,idx) => {
+         return (
+            <Select.Option key={idx.id}  value={it.id}>
+            {`${it._prefix} ${it._name}`}
+           </Select.Option>
+         );
+        })}
+       </Select>
       </Form.Item>
       <Form.Item
        label="Địa chỉ cụ thể"

@@ -26,16 +26,15 @@ import { formatMoney,formatDate,getStatus } from "../../../utils/common";
 import { useCart } from "../../../hook/useCart";
 import { useLoading } from "../../../hook/useLoading";
 import { CartStatus } from "../../../features/cart/cart.model";
+import { useSelector } from "react-redux";
 
 function CartList( {mycart} ) {
-    let order = mycart.myOrder;
-
-
+   let order = mycart.myOrder;
  const { Step } = Steps;
  const { step2, step3, step4, step1, step5 } = getStatus(
   mycart.status
  );
-
+   const{user} = useSelector(state=>state.auth)
  const columns = [
   {
    title: "Hình ảnh",
@@ -70,14 +69,6 @@ function CartList( {mycart} ) {
     return <>{record}</>;
    },
   },
-//   {
-//    title: "Số lượng",
-//    dataIndex: "it.qty",
-//    key: "it.qty",
-//    render: (record) => {
-//     return <>{record}</>;
-//    },
-//   },
  ];
  const loading = useLoading();
  const { changeStatusAdmin } = useCart();
@@ -115,7 +106,7 @@ function CartList( {mycart} ) {
         <Typography>{mycart.phone}</Typography>
        </Descriptions.Item>
        <Descriptions.Item label={"Địa chỉ"}>
-        <Typography>{mycart.address}</Typography>
+        <Typography>{user?.address}</Typography>
        </Descriptions.Item>
        <Descriptions.Item label={"Ghi chú"}>
         <Typography>{"Giao tận cửa không thì boom"}</Typography>
@@ -162,11 +153,6 @@ function CartList( {mycart} ) {
       </Form>
      </Form.Item>
     </Form>
-    {/* {mycart.status === CartStatus.DONE && !mycart.isCommented && (
-     <Card>
-      <CreateComment cartId={mycart.id} product={mycart.list} />
-     </Card>
-    )} */}
    </Card>
     );
  

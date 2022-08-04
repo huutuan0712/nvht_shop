@@ -8,14 +8,14 @@ export default function ProductListing() {
     const products = useSelector(state =>state.product.Products.product);
    
  const mapProduct = useMemo(() => {
-  return products?.map((it) => (
+  return products?.map((it,idx) => (
    <Col
     key={Math.random()}
     xxl={{ span: 3 }}
     xl={{ span: 4 }}
     sm={{ span: 8 }}
     xs={{ span: 24 }}>
-    <ProductCard className="product-card" data={it} />
+    <ProductCard className="product-card" key={idx} data={it} />
    </Col>
   ));
  }, [products]);

@@ -37,8 +37,25 @@ const { user } = useSelector(state=>state.auth);
    })
    .finally(() => loading?.hide());
  };
- const updateUser = (data, file) => {
- console.log("🚀 ~ file: useInformation.jsx ~ line 41 ~ updateUser ~ data, file", data, file)
+ const updateAvatar =  (file)=>{
+    console.log(file);
+    loading?.show()
+    dispatch(updateInformationdAction({
+      id:user?.id,
+      image:file
+    }))
+    .then(unwrapResult)
+   .then((res) => {
+    dispatch(setUser(res));
+   toastSuccess('Update User Success');
+   })
+   .catch((err) => {
+    loading?.hide();
+   toastError('Update User Error',err)
+   })
+   .finally(() => loading?.hide());
+ }
+ const updateUser = (data) => {
   // loading?.show();
   let formData = new FormData();
   if (data) {
@@ -46,15 +63,18 @@ const { user } = useSelector(state=>state.auth);
      formData.append(key, value );
     }
    }
-    if (file) {
-     formData.append("image", file);
-    }
+    // if (file) {
+    //  formData.append("image", file);
+    // }
   
 
   dispatch(
    updateInformationdAction({
     id:user?.id,
-    name:data.name
+    name:data.name,
+    address:data.address,
+    phone:data.phone,
+    birthday:data.birthday
    })
   )
    .then(unwrapResult)
@@ -68,5 +88,5 @@ const { user } = useSelector(state=>state.auth);
    })
    .finally(() => loading?.hide());
  };
- return { updateUser, updatePassword };
+ return { updateUser, updatePassword,updateAvatar };
 }

@@ -1,5 +1,4 @@
-import { Button, Form, Space, Table, Tabs } from "antd";
-// import useDefineSearch from "hook/useDefineSearch";
+import { Button, Form, Space, Table, Tabs } from "antd";;
 
 import _filter from "lodash/filter";
 import React, { useEffect } from "react";
@@ -11,13 +10,10 @@ import "./CartAdmin.scss";
 export default function CartAdmin() {
   const {  data ,changeStatusAdmin} = useCart();
  const { TabPane } = Tabs;
-//  const { getColumnSearchProps } = useDefineSearch();
  const loading = useLoading();
  const columns= [
   {
    title: "Mã đơn hàng",
-   dataIndex: "id",
-//    ...getColumnSearchProps("_id"),
   },
   {
    title: "Thông tin người nhận",

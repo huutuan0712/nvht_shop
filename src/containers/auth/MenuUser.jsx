@@ -11,7 +11,7 @@ export default function MenuUser() {
  const mapMenu = useMemo(() => {
   if (category)
    return category.map((it) => (
-      <Menu.Item key={Math.random() + it.id}>
+      <Menu.Item key={it.id}>
        <Link to={`/product/category/${it.slug}`}>{it.name}</Link>
       </Menu.Item>
    ));

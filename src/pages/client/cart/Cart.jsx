@@ -11,18 +11,18 @@ export default function Cart() {
 
  const navigate = useNavigate();
 
-    //  if (!carts || !carts.length)
-    //   return (
-    //    <Result
-    //     status="404"
-    //     subTitle="Giỏ hàng hiện tại của bạn đang trống"
-    //     extra={
-    //      <Button onClick={() => navigate("/")} type="primary">
-    //       Tiếp tục mua hàng
-    //      </Button>
-    //     }
-    //    />
-    //   );
+     if (!carts)
+      return (
+       <Result
+        status="404"
+        subTitle="Giỏ hàng hiện tại của bạn đang trống"
+        extra={
+         <Button onClick={() => navigate("/")} type="primary">
+          Tiếp tục mua hàng
+         </Button>
+        }
+       />
+      );
  return (
   <div>
    <Typography.Title>Giỏ hàng của bạn</Typography.Title>

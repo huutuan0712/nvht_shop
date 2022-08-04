@@ -13,13 +13,13 @@ export default function Compose(props) {
  return (
   <>
    {[
-     StoreProvider,
+    StoreProvider,
     LoadingProvider,
     ProductProvider,
     CategoryProvider,
-     CartProvider,
-   ].reduceRight((acc, Comp) => {
-    return <Comp>{acc}</Comp>;
+    CartProvider,
+   ].reduceRight((acc, Comp,index) => {
+    return <Comp key={index}>{acc}</Comp>;
    }, children)}
   </>
  );

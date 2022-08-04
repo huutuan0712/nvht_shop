@@ -1,7 +1,13 @@
 import { unwrapResult } from "@reduxjs/toolkit";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { addProductAction, deleteProductAction, getProductAction, getProductCategoryAction } from "../features/product/product.action";
+import {
+    addProductAction,
+    deleteProductAction,
+    getProductAction,
+    getProductCategoryAction,
+    getSortProductAction
+} from "../features/product/product.action";
 import { setProduct } from "../features/product/product.slice";
 import { toastError, toastSuccess } from "../utils/toast";
 import { useLoading } from "./useLoading";
@@ -60,12 +66,24 @@ export default function ProductProvider({ children }) {
        })
        .finally(() => loading?.hide());
      };
+    const getSortProduct = ()=>{
+        loading?.show()
+        dispatch(getSortProductAction())
+        .then(unwrapResult)
+        .then(res=>{ dispatch(setProduct(res))
+          console.log(res)
+        })
+        .catch(err=>{console.log(err)})
+        .finally(loading?.hide())
+    }
      useEffect(() => {
       fetchProduct();
+      // getSortProduct()
      }, []);
     return (
       <ProductContext.Provider
        value={{
+        // getSortProduct,
         fetchProduct,
         deleteProduct,
         addProduct,

@@ -1,5 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { createProduct, deleteProduct, getProduct, getProductByCategory, getProductDetail, searchProduct } from "../../api/productApi";
+import {
+    createProduct,
+    deleteProduct,
+    getProduct,
+    getProductByCategory,
+    getProductDetail,
+    searchProduct,
+    sortProduct
+} from "../../api/productApi";
 
 export const getProductAction = createAsyncThunk(
     "/products",
@@ -71,3 +79,13 @@ export const getProductAction = createAsyncThunk(
        }
       }
      );
+export  const getSortProductAction = createAsyncThunk(
+    "/product-sort",
+    async (prams,{rejectWithValue}) =>{
+    try {
+    const res = await sortProduct();
+    return res;
+    }catch(err){
+        return rejectWithValue;
+    }
+});

@@ -4,7 +4,10 @@ const API_ENPOINT = {
         REGISTER:'/auth/register',
         LOGOUT:'/auth/logout',
         CHANGE_PASSWORD:'/auth/change-pass',
-        UPDATE_USER:'/auth/user-profile'
+        UPDATE_USER:'/auth/user-profile',
+        VERIFIED_EMAIL:'/email/verify',
+        FORGOT_PASSWORD:'/forgot-password',
+        UPDATE_PASSWORD:'/update-password'
     },
     CATEGORY:{
        GET:'/categorys',
@@ -19,7 +22,8 @@ const API_ENPOINT = {
         DELETE:'/product/',
         GET_DETAIL:'/product',
         GET_PRODUCT_CATE:'/product/get-category',
-        SEARCH_PRODUCT:'/product/search-product'
+        SEARCH_PRODUCT:'/product/search-product',
+        SORT_PRODUCT:'/product-sort'
      },
      CART:{
         CREATE:'cart/add-cart',
@@ -32,7 +36,13 @@ const API_ENPOINT = {
        GET_ALL_CART:'admin/cart-order',
        CHANGE_CART_ADMIN:'admin/cart-status',
        MY_ORDER:'cart/my-order',
-       PAYMENT_MOMO:'momo-payment'
+       PAYMENT_MOMO:'momo-payment',
+    
+     },
+     PROVINCE:{
+        CITY:'province',
+        WARD:'ward',
+        DISTRICT:'district'
      }
 }
 export default API_ENPOINT

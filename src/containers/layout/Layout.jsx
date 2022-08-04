@@ -90,7 +90,7 @@ import {
        </Header>
        <Content className="content">{children}</Content>
        <Footer className="footer">
-        Ant Design ©2018 Created by NTX TEAM - Thành viên Online
+        Ant Design ©2018 Created by
         {/* {userOnline || 0} */}
        </Footer>
       </Layout>

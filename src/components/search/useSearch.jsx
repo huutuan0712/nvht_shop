@@ -16,8 +16,6 @@ import React, {
    export default function useSearch(onHide) {
     const [product, setProduct] = useState([]);
     let getProduct = product.products;
-   
-
     const dispatch = useDispatch();
     const [text, setText] = useState("");
     const navigate = useNavigate();
@@ -30,10 +28,11 @@ import React, {
       return (
        <List
         dataSource={getProduct}
-        renderItem={(item) => (
-         <List.Item
+        renderItem={(item) =>{
+          let images = JSON.parse(item.image);
+          return <List.Item
           onClick={() => {
-           navigate(`product/detail/${item.id}`);
+           navigate(`product/category/${item.category.name}`);
            onHide();
            setProduct([]);
           }}>
@@ -55,10 +54,10 @@ import React, {
             />
            }
            avatar={
-            <Avatar src={item.image[0]}  />
+            <Avatar src={images[0]}  />
            }></List.Item.Meta>
          </List.Item>
-        )}
+        }}
        />
       );
     }, [getProduct]);

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import authApi, { changePassword, updateInformation } from '../../api/authApi'
+import authApi, { changePassword, forgotPassword, updateInformation, updatePassword, verifiedEmail } from '../../api/authApi'
 
 //  Thunk API
 export const loginAction = createAsyncThunk(
@@ -85,6 +85,39 @@ export const loginAction = createAsyncThunk(
       
        return  rejectWithValue(error)
 
+      }
+    }
+  );
+  export const verifiedEmailAction = createAsyncThunk(
+    '/email/verify/',
+    async (params,{rejectWithValue})=>{
+      try {
+        const res = await verifiedEmail(params)
+        return res;
+      } catch (error) {
+        return rejectWithValue(error)
+      }
+    }
+  );
+  export const forgotPassWordAction= createAsyncThunk(
+    '/forgot-password',
+    async (body,{rejectWithValue})=>{
+      try {
+        const res = await forgotPassword(body);
+        return res;
+      } catch (error) {
+        return rejectWithValue(error)
+      }
+    }
+  );
+  export const updatePassWordAction = createAsyncThunk(
+    '/update-password',
+    async(body,{rejectWithValue})=>{
+      try {
+        const res = await updatePassword(body);
+        return res
+      } catch (error) {
+        return rejectWithValue(error)
       }
     }
   );

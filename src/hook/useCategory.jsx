@@ -16,10 +16,6 @@ export default function CategoryProvider({ children }) {
   const loading = useLoading();
   const fetchCategory =  () => {
     loading?.show();
-  // dispatch(getCategoryAction({}))
-  //  .then(unwrapResult)
-  //  .then((res) => dispatch(setCategory(res.data)))
-  //  .finally(() => loading?.hide());
     dispatch(getCategoryAction())
       .then(unwrapResult)
       .then((res) => dispatch(setCategory(res)))
@@ -86,12 +82,12 @@ export default function CategoryProvider({ children }) {
    }, []);
   return (
     <CategoryContext.Provider
+    key={3}
      value={{
       fetchCategory,
       addCategory,
       updateCategory,
       deleteCategory,
-     
      }}>
      {children}
     </CategoryContext.Provider>

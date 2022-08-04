@@ -36,7 +36,6 @@ export default function ProductCard({ data, className }) {
       )}
      </Space>
     }
-    // description={data?.note.substring(0, 50)}
    />
   </Card>
  );

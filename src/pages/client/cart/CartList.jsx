@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 
 import InputNumberWait from "../../../components/InputNumberWait/InputNumberWait";
 import { useCart } from "../../../hook/useCart";
-// import useCart from "../../../../../hook/useCart";
 import { formatMoney } from "../../../utils/common";
 
 export default function CartList() {
@@ -58,11 +57,10 @@ export default function CartList() {
    render: (text, record) => {
    
     return <InputNumberWait
-       addonAfter="Đôi"
        data={record?.prod_qty|| 0}
        fn={(value) => {
         updateQuantity({
-          id:user?.id ||undefined ,
+          id:user?.id ,
           prod_id:record.id,
           prod_qty:value
         });
@@ -96,7 +94,6 @@ export default function CartList() {
     dataSource={cartItem || []}
     columns={columns}
     pagination={false}
-     rowKey={(record) => Math.random()}
    />
   </div>
  );

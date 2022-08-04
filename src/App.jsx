@@ -13,6 +13,11 @@ import Cart from './pages/client/cart/Cart'
 import Compose from './containers/compose/Compose'
 import CartAdmin from './pages/admin/cart/CartAdmin'
 import CartManagement from './pages/client/cart-management/CartManagement'
+import Verified from './pages/auth/verify email/Verified'
+import FortgotPassword from './pages/auth/forgot-password/ForgotPassword'
+import ChangePassword from './pages/auth/forgot-password/ChangePassword'
+import Checkout from './pages/client/checkout/Checkout'
+import Profile from './components/profile/Profile'
 
 
 function App() {
@@ -32,8 +37,10 @@ function App() {
                   </Route>
                   <Route path="cart"  element={<Cart />}/>
                   <Route path="cart">
-                  <Route path={"my-cart"} element={<CartManagement />} />
+                  <Route path={"my-order"} element={<CartManagement />} />
                   </Route>
+                  <Route path="checkout"  element={<Checkout />}/>
+                  <Route path="profile" element={<Profile />} />
                 </Route>
               {/* ADMIN */}
               <Route path="admin" element={<AdminRoute />}>
@@ -43,6 +50,9 @@ function App() {
               </Route>
               <Route path="register" element={<RegisterForm />} />
               <Route path="login" element={<LoginForm />} />
+              <Route path="verified" element={<Verified/>} />
+              <Route path="forgot-password" element={<FortgotPassword/>} />
+              <Route path="change-password" element={<ChangePassword/>} />+
               <Route path="*" element={<NotFound />} />
           </Routes>
           </Compose>

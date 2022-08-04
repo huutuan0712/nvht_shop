@@ -23,8 +23,8 @@ export default function Poster() {
  };
  return (
   <Slider {...config} className="posters">
-   {posters.map((it) => (
-    <Image key={Math.random()} src={it} width="100%" />
+   {posters.map((it,idx) => (
+    <Image key={idx} src={it} width="100%" />
    ))} 
   </Slider>
  );

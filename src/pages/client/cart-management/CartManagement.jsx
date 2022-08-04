@@ -18,8 +18,8 @@ function CartManagement() {
    return (
     <Result status={"404"} subTitle={"Bạn chưa có đơn hàng nào"} />
    );
-  return orders.map((it) => (
-    <CartList key={Math.random()} mycart={it} />
+  return orders.map((it,index) => (
+    <CartList key={index} mycart={it} />
    ));
  }, [orders]);
 

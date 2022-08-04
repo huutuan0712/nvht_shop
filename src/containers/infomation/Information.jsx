@@ -15,9 +15,9 @@ import {
 import useInfomation from "./useInformation";
  
    export default function Information({ onHide, visible }) {
-    const { user } = useSelector(state=>state.auth);
+     const { updateUser, updatePassword } = useInfomation();
+     const { user } = useSelector(state=>state.auth);
     const [showPassword, setShowPassword] = useState(false);
-    const { updateUser, updatePassword } = useInfomation();
     const onFinish = (value) =>
      updatePassword({
       id:user?.id,

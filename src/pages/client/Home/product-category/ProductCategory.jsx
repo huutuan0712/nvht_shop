@@ -18,8 +18,8 @@ function ProductCategory() {
    );
   return (
    <Row gutter={15}>
-    {productCate.product.map((it) => (
-     <Col span={4} key={Math.random()}>
+    {productCate.product.map((it,idx) => (
+     <Col span={4} key={idx}>
       <ProductCard data={it} className={""} />
      </Col>
     ))}
